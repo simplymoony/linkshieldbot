@@ -36,7 +36,7 @@ Options:
 `
 )
 
-var version string // Initialized in init
+var version string
 
 type env struct {
 	config
@@ -50,11 +50,13 @@ func (e *env) Verbosef(format string, v ...any) {
 }
 
 func init() {
-	buildInfo, ok := debug.ReadBuildInfo()
-	if ok {
-		version = buildInfo.Main.Version
-	} else {
-		version = "(unknown)"
+	if version == "" {
+		buildInfo, ok := debug.ReadBuildInfo()
+		if ok {
+			version = buildInfo.Main.Version
+		} else {
+			version = "(devel)"
+		}
 	}
 }
 
