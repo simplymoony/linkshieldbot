@@ -1,0 +1,21 @@
+# linkshieldbot's config file
+
+# Makes logs verbose.
+# You should probably keep this disabled unless you need to troubleshoot an issue or
+# a project developer asked you to enable this.
+verbose = false
+
+# Amount of time to wait before cancelling an update poll/fetch request and try again.
+poller_timeout = 10
+
+# Amount of time to wait for update handlers to finish their job.
+handler_timeout = 20
+
+# Directives tell the bot what to do with join requests.
+# A single directive is formatted in the DST = SRC format - the DST key is
+# the ID of the chat where join requests sent to it are approved only if the requesting
+# user is member of the chat defined in the SRC value.
+[directives]
+# In the below example, -100123 is DST and -100456 is SRC.
+# Try it: modify and uncomment (remove the '#' prefix) the directive below to make it functional.
+#-100123 = -100456
