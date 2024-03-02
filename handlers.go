@@ -36,7 +36,7 @@ func handleError(e *env) poller.ErrorCallback {
 		if fromPoller {
 			e.Printf("Failed to fetch updates, retrying.. (%v)", err)
 		} else {
-			e.Printf("Failed to process update: %v", err)
+			e.Printf("Error while handling update: %v", err)
 		}
 	}
 }
@@ -92,9 +92,10 @@ func onJoinRequest(ctx context.Context, bot *tg.Bot, req *tg.ChatJoinRequest, e 
 		}
 		if !ok {
 			e.Printf(
-				"Couldn't decline user %d in chat %d, maybe already declined?",
+				"Couldn't decline user %d in chat %d, likely already declined",
 				req.UserChatID, req.Chat.ID,
 			)
+			return nil
 		}
 		e.Verbosef("Declined join request (chat_id=%d, user_id=%d)", req.Chat.ID, req.UserChatID)
 
@@ -110,9 +111,10 @@ func onJoinRequest(ctx context.Context, bot *tg.Bot, req *tg.ChatJoinRequest, e 
 	}
 	if !ok {
 		e.Printf(
-			"Couldn't approve user %d in chat %d, maybe already approved?",
+			"Couldn't approve user %d in chat %d, likely already approved",
 			req.UserChatID, req.Chat.ID,
 		)
+		return nil
 	}
 	e.Verbosef(
 		"Accepted join request (chat_id=%d, user_id=%d)", req.Chat.ID, req.UserChatID)
