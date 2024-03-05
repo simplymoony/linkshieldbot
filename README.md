@@ -17,12 +17,14 @@ Pre-compiled binaries are available [in the releases page](https://github.com/si
 ### From source
 First, install the Go compiler from [their website](https://go.dev/dl/). Once you have it installed, you have two options:
 
-- **Option 1 (Recommended)**: Have the `go install` command download, compile and install it for you:
+- **Option 1 (Recommended)**: Have the `go install` command download, compile and install the latest version for you:
 
-  `go install https://github.com/simplymoony/linkshieldbot@latest`
+  `go install github.com/simplymoony/linkshieldbot@latest`
 
-  If Go was properly installed following the installation instructions, the `linkshieldbot` command will
-  become available in your shell/terminal.
+  This will install the binary in the directory named by the `GOBIN`
+  environment variable, which defaults to `$GOPATH/bin` or `$HOME/go/bin` if the `GOPATH` environment variable is not set.
+
+  TIP: You can use `go env` to view your Go environment.
   
 - **Option 2**: Download the source code and compile it manually using the `go build` command.
 
